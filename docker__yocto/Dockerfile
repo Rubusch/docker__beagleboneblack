@@ -76,6 +76,8 @@ RUN cd /home/$USER/poky && git clone -b $BRANCH_YOCTO git://git.openembedded.org
 
 RUN cd /home/$USER/poky && git clone -b $BRANCH_YOCTO https://github.com/meta-qt5/meta-qt5.git
 
+RUN cd /home/$USER/poky && git clone git://github.com/beagleboard/meta-beagleboard.git bbb
+
 # provide proper config in own meta layer
 COPY meta-lothars-configs /home/$USER/poky/
 RUN sed "s/~/\/home\/$USER/g" -i /home/$USER/poky/meta-lothars-configs/conf/bblayers.conf.sample
