@@ -79,7 +79,7 @@ RUN cd /home/$USER/poky && git clone -b $BRANCH_YOCTO https://github.com/meta-qt
 RUN cd /home/$USER/poky && git clone git://github.com/beagleboard/meta-beagleboard.git bbb
 
 # provide proper config in own meta layer
-COPY meta-lothars-configs /home/$USER/poky/
+COPY meta-lothars-configs /home/$USER/poky/meta-lothars-configs
 RUN sed "s/~/\/home\/$USER/g" -i /home/$USER/poky/meta-lothars-configs/conf/bblayers.conf.sample
 
 ## reset permissions
