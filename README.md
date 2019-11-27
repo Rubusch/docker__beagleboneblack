@@ -1,8 +1,5 @@
 # Docker Container for my BeagleBoneBlack (bbb)
 
-**UNDER CONSTRUCTION!**
-
-
 
 ## Resources
 
