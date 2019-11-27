@@ -9,5 +9,5 @@ BBLAYERS ?= " \
   ~/poky/meta \
   ~/poky/meta-poky \
   ~/poky/meta-yocto-bsp \
-  ~/poky/meta-lothars-configs \
+  ~/poky/build/meta-lothars-configs \
   "
