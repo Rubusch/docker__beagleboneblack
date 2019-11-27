@@ -14,10 +14,8 @@ https://beagleboard.org/p/30847/yocto-on-beaglebone-black-9ae649
 
 ```
 $ cd ./docker__yocto/
-$ time docker build --build-arg USER=$USER -t rubuschl/bbb-yocto:$(date +%Y%m%d%H%M%S) .
+$ time docker build --no-cache --build-arg USER=$USER -t rubuschl/bbb-yocto:$(date +%Y%m%d%H%M%S) .
 ```
-
-Use ```--no-cache``` when re-implementing the docker image.
 
 
 ## Usage
