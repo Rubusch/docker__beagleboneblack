@@ -6,7 +6,7 @@
 
 ## Resources
 
-TODO
+https://beagleboard.org/p/30847/yocto-on-beaglebone-black-9ae649
 
 
 ## Build
