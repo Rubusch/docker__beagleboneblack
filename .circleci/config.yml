@@ -7,4 +7,4 @@ jobs:
 
      # yocto
      - run: cd ./docker__yocto/ && docker build --no-cache --build-arg USER=$USER -t rubuschl/bbb-yocto:123 .
-     - run: docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/poky/build -v $PWD/meta-lothars-configs:/home/$USER/poky/meta-lothars-configs rubuschl/bbb-yocto:123
+     - run: cd ./docker__yocto && docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/poky/build -v $PWD/meta-lothars-configs:/home/$USER/poky/meta-lothars-configs rubuschl/bbb-yocto:123
