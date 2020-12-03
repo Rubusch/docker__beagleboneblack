@@ -71,16 +71,13 @@ RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 
 ################################################################################
 ## get sources
-RUN cd /home/$USER && git clone -b $BRANCH_YOCTO git://git.yoctoproject.org/poky poky
+RUN cd /home/$USER && sudo su $USER -c "git clone -b $BRANCH_YOCTO git://git.yoctoproject.org/poky poky"
 
-RUN cd /home/$USER/poky && git clone -b $BRANCH_YOCTO git://git.openembedded.org/meta-openembedded
+RUN cd /home/$USER/poky && sudo su $USER -c "git clone -b $BRANCH_YOCTO git://git.openembedded.org/meta-openembedded"
 
-RUN cd /home/$USER/poky && git clone -b $BRANCH_YOCTO https://github.com/meta-qt5/meta-qt5.git
+RUN cd /home/$USER/poky && sudo su $USER -c "git clone -b $BRANCH_YOCTO https://github.com/meta-qt5/meta-qt5.git"
 
-RUN cd /home/$USER/poky && git clone git://github.com/beagleboard/meta-beagleboard.git bbb
-
-## reset permissions
-RUN chown $USER:$USER -R /home/$USER
+RUN cd /home/$USER/poky && sudo su $USER -c "git clone git://github.com/beagleboard/meta-beagleboard.git bbb"
 
 
 ################################################################################
