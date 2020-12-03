@@ -10,7 +10,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG USER=""
 
 ## the yocto branch
-ARG BRANCH_YOCTO="warrior"
+ARG BRANCH_YOCTO="dunfell"
+#ARG BRANCH_YOCTO="warrior"
 
 
 ################################################################################
