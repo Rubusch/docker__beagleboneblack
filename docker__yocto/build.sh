@@ -1,7 +1,10 @@
 #!/bin/bash -e
-export YOCTODIR="/home/$(whoami)/poky"
+
+export USER="$(whoami)"
+export YOCTODIR="/home/${USER}/poky"
 export BUILDDIR="${YOCTODIR}/build"
-chown $(whoami):$(whoami) -R $BUILDDIR
+
+sudo chown ${USER}:${USER} -R ${YOCTODIR}
 
 ## source again, before start building
 cd ${YOCTODIR}
@@ -16,3 +19,6 @@ sed "s/  ~\/poky\/meta/  \/home\/$(whoami)\/poky\/meta/g" -i ${BUILDDIR}/conf/bb
 
 ## build
 bitbake core-image-minimal
+
+echo "READY."
+echo

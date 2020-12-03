@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM debian:testing
 MAINTAINER Lothar Rubusch <lotophagon@protonmail.com>
 WORKDIR /root
 ENV DEBIAN_FRONTEND=noninteractive
