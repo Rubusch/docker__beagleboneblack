@@ -9,5 +9,7 @@ BBLAYERS ?= " \
   ~/poky/meta \
   ~/poky/meta-poky \
   ~/poky/meta-yocto-bsp \
-  ~/poky/meta-lothars-configs \
   "
+
+## currently turned off, needed for e.g. application
+#  ~/poky/meta-lothars-configs
