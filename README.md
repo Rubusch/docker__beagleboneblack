@@ -17,7 +17,7 @@ https://beagleboard.org/p/30847/yocto-on-beaglebone-black-9ae649
 
 ```
 $ cd ./docker__yocto/
-$ time docker build --no-cache --build-arg USER=$USER -t rubuschl/bbb-yocto:$(date +%Y%m%d%H%M%S) .
+$ time docker build --build-arg USER=$USER -t rubuschl/bbb-yocto:$(date +%Y%m%d%H%M%S) .
 ```
 
 
@@ -29,7 +29,7 @@ $ docker images
     rubuschl/bbb-yocto 20191104161353      cbf4cb380168        24 minutes ago      10.5GB
     ...
 
-$ docker run -ti -v $PWD/output:/home/$USER/poky/build -v $PWD/meta-lothars-configs:/home/$USER/poky/meta-lothars-configs --user=$USER:$USER --workdir=/home/$USER rubuschl/bbb-yocto:20191104161353 /bin/bash
+$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/poky/build -v $PWD/meta-lothars-configs:/home/$USER/poky/meta-lothars-configs rubuschl/bbb-yocto:20191104161353 /bin/bash
 
 docker $> build.sh
 ```
@@ -41,7 +41,7 @@ docker $> build.sh
 
 ```
 $ cd ./docker__buildroot
-$ time docker build --no-cache --build-arg USER=$USER -t rubuschl/bbb-buildroot:$(date +%Y%m%d%H%M%S) .
+$ time docker build --build-arg USER=$USER -t rubuschl/bbb-buildroot:$(date +%Y%m%d%H%M%S) .
 ```
 
 
@@ -53,7 +53,7 @@ $ docker images
     rubuschl/bbb-buildroot 20191104161353      cbf4cb380168        24 minutes ago      10.5GB
     ...
 
-$ docker run -ti -v $PWD/output:/home/$USER/poky/build -v $PWD/meta-lothars-configs:/home/$USER/poky/meta-lothars-configs --user=$USER:$USER --workdir=/home/$USER rubuschl/bbb-buildroot:20191104161353 /bin/bash
+$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/buildroot/output -v $PWD/dl:/home/$USER/buildroot/dl rubuschl/bbb-buildroot:20191104161353 /bin/bash
 
 docker $> build.sh
 ```

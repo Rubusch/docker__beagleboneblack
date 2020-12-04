@@ -23,7 +23,7 @@ RUN apk add --update-cache \
         --repository https://alpine.global.ssl.fastly.net/alpine/edge/main \
         --repository https://dl-3.alpinelinux.org/alpine/edge/testing \
     alpine-sdk \
-	coreutils \
+    coreutils \
     chrpath \
     diffstat \
     gawk \
@@ -54,11 +54,13 @@ RUN apk add --update-cache \
     m4 \
     mercurial \
     cvs \
-    subversion
+    subversion \
+    bash
 
 ### (opt) tools for debugging and working, e.g. X11-apps for testing the xserver via xclock
 RUN apk add \
-    bash \
+    gettext \
+    which \
     vim \
     screen \
     sudo \
