@@ -82,7 +82,7 @@ WORKDIR /root
 ARG USER=""
 
 ## the branch
-ARG BRANCH_BUILDROOT="2020.05.x"
+ARG BRANCH="2020.11.x"
 
 
 #################################################################################
@@ -129,6 +129,7 @@ RUN apk add --update-cache \
     cvs \
     subversion \
     zig \
+    libc-dev \
     bash
 
 ### (opt) tools for debugging and working, e.g. X11-apps for testing the xserver via xclock
@@ -162,9 +163,9 @@ USER $USER
 
 ## get (my) sources
 ## NB: the official buildroot is not able to build cross-mounted devices (thus using my patched buildroot tree)
-RUN cd /home/$USER && git clone -j4 --depth=1 --branch ${BRANCH_BUILDROOT} https://github.com/Rubusch/buildroot.git buildroot
+RUN cd /home/$USER && git clone -j4 --depth=1 --branch lothar/${BRANCH} https://github.com/Rubusch/buildroot.git buildroot
 ## oficial buildroot
-#RUN cd /home/$USER && git clone -j4 --depth=1 --branch ${BRANCH_BUILDROOT} https://github.com/buildroot/buildroot.git buildroot
+#RUN cd /home/$USER && git clone -j4 --depth=1 --branch ${BRANCH} https://github.com/buildroot/buildroot.git buildroot
 
 
 ################################################################################
