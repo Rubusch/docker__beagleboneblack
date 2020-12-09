@@ -102,7 +102,9 @@ RUN apk add --update-cache \
     gawk \
     ncurses-dev \
     texinfo \
+    zlib \
     zlib-dev \
+    libstdc++ \
     bison \
     flex \
     binutils \
