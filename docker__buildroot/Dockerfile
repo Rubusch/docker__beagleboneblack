@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG USER=""
 
 ### the branch
-ARG BRANCH_BUILDROOT="lothar/rpi3b-2020.02.x"
+ARG BRANCH="2020.11.x"
 
 
 
@@ -83,7 +83,6 @@ RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 ### in case docker complains for a not set USER, perhaps you forgot to use --build-arg USER=$USER
 #ARG USER=""
 #
-### the branch
 #ARG BRANCH="2020.11.x"
 #
 #
