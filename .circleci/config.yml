@@ -5,11 +5,13 @@ jobs:
    steps:
      - checkout
 
-     # yocto
+     ## yocto
      - run: cd ./docker__yocto/ && docker build --no-cache --build-arg USER=$USER -t rubuschl/bbb-yocto:123 .
      - run: cd ./docker__yocto && docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/poky/build -v $PWD/meta-lothars-configs:/home/$USER/poky/meta-lothars-configs rubuschl/bbb-yocto:123
 
+     ## make space
+     - run: rm -rf ./docker__yocto &
+
      # buildroot (alpine Linux experiments / musl)
      - run: cd ./docker__buildroot && docker build --no-cache --build-arg USER=$USER -t rubuschl/bbb-buildroot:456 .
-     ## TODO alpine linux setup
      - run: cd ./docker__buildroot && docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/buildroot/output -v $PWD/dl:/home/$USER/buildroot/dl rubuschl/bbb-buildroot:456
