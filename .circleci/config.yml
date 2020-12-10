@@ -12,4 +12,4 @@ jobs:
      # buildroot (alpine Linux experiments / musl)
      - run: cd ./docker__buildroot && docker build --no-cache --build-arg USER=$USER -t rubuschl/bbb-buildroot:456 .
      ## TODO alpine linux setup
-     #- run: cd ./docker__buildroot && docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/buildroot/output -v $PWD/dl:/home/$USER/buildroot/dl rubuschl/bbb-buildroot:456
+     - run: cd ./docker__buildroot && docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/buildroot/output -v $PWD/dl:/home/$USER/buildroot/dl rubuschl/bbb-buildroot:456
