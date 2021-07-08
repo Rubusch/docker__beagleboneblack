@@ -30,20 +30,15 @@ NB: Where 1.28.6 is the latest version (currently not supported by devian/ubuntu
 
 ```
 $ cd ./docker__buildroot
-$ time docker build --build-arg USER=$USER -t rubuschl/bbb-buildroot:$(date +%Y%m%d%H%M%S) .
+$ docker-compose up
 ```
 
 
 ### Usage
 
 ```
-$ docker images
-    REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-    rubuschl/bbb-buildroot 20191104161353      cbf4cb380168        24 minutes ago      10.5GB
-    ...
-
-$ docker run --rm -ti --user=$USER:$USER --workdir=/home/$USER -v $PWD/output:/home/$USER/buildroot/output -v $PWD/dl:/home/$USER/buildroot/dl rubuschl/bbb-buildroot:20191104161353 /bin/bash
-
+$ cd docker__buildroot
+$ docker-compose -f ./docker-compose.yml run --rm bbb_buildroot /bin/bash
 docker $> build.sh
 ```
 
@@ -57,6 +52,7 @@ docker $> build.sh
 ```
 $ cd ./docker__yocto
 $ docker-compose up
+docker $> build.sh
 ```
 
 
