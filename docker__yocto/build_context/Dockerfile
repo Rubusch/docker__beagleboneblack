@@ -9,10 +9,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ## in case docker complains for a not set USER, perhaps you forgot to use --build-arg USER=$USER
 ARG USER=""
 
-## the yocto branch
-ARG BRANCH_YOCTO="dunfell"
-#ARG BRANCH_YOCTO="warrior"
-
 
 ################################################################################
 ## set up apt fully functional
@@ -42,10 +38,7 @@ RUN apt-get install -y  \
     cpio \
     rsync \
     wget \
-    git-core
-
-## (opt) tools for debugging and working, e.g. X11-apps for testing the xserver via xclock
-RUN apt-get install -y   \
+    git-core \
     vim \
     screen \
     minicom \
@@ -71,13 +64,11 @@ RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 
 ################################################################################
 ## get sources
-RUN cd /home/$USER && sudo su $USER -c "git clone -b $BRANCH_YOCTO git://git.yoctoproject.org/poky poky"
 
-RUN cd /home/$USER/poky && sudo su $USER -c "git clone -b $BRANCH_YOCTO git://git.openembedded.org/meta-openembedded"
+USER $USER
 
-RUN cd /home/$USER/poky && sudo su $USER -c "git clone -b $BRANCH_YOCTO https://github.com/meta-qt5/meta-qt5.git"
-
-RUN cd /home/$USER/poky && sudo su $USER -c "git clone git://github.com/beagleboard/meta-beagleboard.git bbb"
+WORKDIR /home/$USER
+RUN mkdir -p /home/$USER/poky
 
 
 ################################################################################
