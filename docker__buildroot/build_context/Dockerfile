@@ -40,10 +40,7 @@ RUN apt-get install -y  \
         locales \
         bc \
         cpio \
-        rsync
-
-## (opt) tools for debugging and working, e.g. X11-apps for testing the xserver via xclock
-RUN apt-get install -y   \
+        rsync \
         cvs \
         mercurial \
         subversion \
@@ -162,11 +159,12 @@ RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 
 ################################################################################
 ## get sources
-USER $USER
+#USER $USER
+#WORKDIR /home/$USER
 
 ## get (my) sources
 ## NB: the official buildroot is not able to build cross-mounted devices (thus using my patched buildroot tree)
-RUN cd /home/$USER && git clone -j4 --depth=1 --branch lothar/${BRANCH} https://github.com/Rubusch/buildroot.git buildroot
+#RUN git clone -j4 --depth=1 --branch lothar/${BRANCH} https://github.com/Rubusch/buildroot.git buildroot
 ## oficial buildroot (won't work due to Kbuild's use of "rename()" for moving files which is not able to move cross-device (mounted folder)
 #RUN cd /home/$USER && git clone -j4 --depth=1 --branch ${BRANCH} https://github.com/buildroot/buildroot.git buildroot
 
