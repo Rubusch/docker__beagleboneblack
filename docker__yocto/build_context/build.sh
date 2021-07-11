@@ -25,7 +25,8 @@ for item in "github.com" "bitbucket.org"; do
 done
 
 ## initial clone
-if [[ "1" == "$(find ${YOCTO_DIR} | wc -l)" ]]; then
+FIRST="$(ls -A "${YOCTO_DIR}")"
+if [ -z "${FIRST}" ]; then
     cd "${MY_HOME}"
     git clone -b "${YOCTO_BRANCH}" git://git.yoctoproject.org/poky "${YOCTO_DIR}"
 
