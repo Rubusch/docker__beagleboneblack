@@ -60,6 +60,7 @@ docker $> build.sh
 In case of a re-build, make sure to clean sufficiently before
 
 ```
+$ cd ./docker__yocto
 $ docker-compose -f ./docker-compose.yml run --rm bbb_yocto /bin/bash
 ```
 
