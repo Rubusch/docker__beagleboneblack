@@ -1,12 +1,12 @@
 #!/bin/bash -e
 
-export MY_USER="$(whoami)"
-export MY_HOME="/home/${MY_USER}"
-export SSH_DIR="${MY_HOME}/.ssh"
-export SSH_KNOWN_HOSTS="${SSH_DIR}/known_hosts"
-export YOCTO_BRANCH="dunfell"
-export YOCTO_DIR="${MY_HOME}/poky"
-export BUILD_DIR="${YOCTO_DIR}/build"
+MY_USER="$(whoami)"
+MY_HOME="/home/${MY_USER}"
+SSH_DIR="${MY_HOME}/.ssh"
+SSH_KNOWN_HOSTS="${SSH_DIR}/known_hosts"
+YOCTO_BRANCH="dunfell"
+YOCTO_DIR="${MY_HOME}/poky"
+BUILD_DIR="${YOCTO_DIR}/build"
 
 ## permissions
 for item in "${YOCTO_DIR}" "${SSH_DIR}" "${MY_HOME}/meta-lothars-configs" "${MY_HOME}/.gitconfig"; do

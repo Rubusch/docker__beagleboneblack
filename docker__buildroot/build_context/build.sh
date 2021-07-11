@@ -3,11 +3,18 @@
 MY_USER="$(whoami)"
 DEFCONFIG="beaglebone_defconfig"
 MY_HOME="/home/${MY_USER}"
+SSH_DIR="${MY_HOME}/.ssh"
+SSH_KNOWN_HOSTS="${SSH_DIR}/known_hosts"
 BR_DIR="${MY_HOME}/buildroot"
 BRANCH="2020.11.x"
 
 ## permissions
-sudo chown "${MY_USER}:${MY_USER}" -R "${BR_DIR}"
+for item in "${BR_DIR}" "${SSH_DIR}" "${MY_HOME}/.gitconfig"; do
+    if [ ! "${MY_USER}" == "$( stat -c %U ${item} )" ]; then
+        ## may take some time
+        sudo chown "${MY_USER}:${MY_USER}" -R ${item}
+    fi
+done
 
 ## ssh known_hosts
 touch ${SSH_KNOWN_HOSTS}
