@@ -6,8 +6,18 @@ MY_HOME="/home/${MY_USER}"
 BR_DIR="${MY_HOME}/buildroot"
 BRANCH="2020.11.x"
 
+## permissions
 sudo chown "${MY_USER}:${MY_USER}" -R "${BR_DIR}"
 
+## ssh known_hosts
+touch ${SSH_KNOWN_HOSTS}
+for item in "github.com" "bitbucket.org"; do
+    if [ "" == "$( grep ${item} -r ${SSH_KNOWN_HOSTS} )" ]; then
+        ssh-keyscan "${item}" >> "${SSH_KNOWN_HOSTS}"
+    fi
+done
+
+## initial clone
 FIRST="$(ls -A "${BR_DIR}")"
 if [ -z "${FIRST}" ]; then
     cd "${BR_DIR}"
