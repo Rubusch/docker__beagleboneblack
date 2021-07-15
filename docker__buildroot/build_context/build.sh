@@ -1,12 +1,13 @@
 #!/bin/sh -e
 
 MY_USER="$(whoami)"
-DEFCONFIG="beaglebone_defconfig"
 MY_HOME="/home/${MY_USER}"
 SSH_DIR="${MY_HOME}/.ssh"
 SSH_KNOWN_HOSTS="${SSH_DIR}/known_hosts"
 BR_DIR="${MY_HOME}/buildroot"
-BRANCH="2020.11.x"
+
+export DEFCONFIG="beaglebone_defconfig"
+export BRANCH="2020.11.x"
 
 ## permissions
 for item in "${BR_DIR}" "${SSH_DIR}" "${MY_HOME}/.gitconfig"; do
@@ -36,8 +37,8 @@ if [ -z "${FIRST}" ]; then
 fi
 
 cd "${BR_DIR}"
-make defconfig "${DEFCONFIG}"
-make -j"$(nproc)"
+make defconfig "${DEFCONFIG}" || exit 1
+make -j"$(nproc)" || exit 1
 
 echo "READY."
 echo
