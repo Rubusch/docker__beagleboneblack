@@ -20,6 +20,8 @@ services:
 
         volumes:
          - ~/.gitconfig:/home/${USER}/.gitconfig:ro
-         - ~/.ssh:/home/${USER}/.ssh:ro
+         ## actually put in ro, but take care of known_hosts before
+         #- ~/.ssh:/home/${USER}/.ssh:ro
+         - ~/.ssh:/home/${USER}/.ssh
          - ./buildroot:/home/${USER}/buildroot  ## folder does not need to be around
 

@@ -10,7 +10,7 @@ export DEFCONFIG="beaglebone_defconfig"
 export BRANCH="2020.11.x"
 
 ## permissions
-for item in "${BR_DIR}" "${SSH_DIR}" "${MY_HOME}/.gitconfig"; do
+for item in "${BR_DIR}" "${SSH_DIR}"; do
     if [ ! "${MY_USER}" == "$( stat -c %U ${item} )" ]; then
         ## may take some time
         sudo chown "${MY_USER}:${MY_USER}" -R ${item}
