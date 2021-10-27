@@ -5,9 +5,15 @@ build()
 	pushd "${1}" &> /dev/null
 	echo "UID=$(id -u)" > .env
 	echo "GID=$(id -g)" >> .env
-	docker-compose up
+	if [ -n "${2}" ]; then
+	    docker-compose build
+	else
+	    docker-compose up
+	fi
 	popd &> /dev/null
 }
+
+DRYRUN="${1}"
 
 ## base image
 IMAGE="sandbox"
@@ -19,11 +25,11 @@ CONTAINER="$(docker images | grep "/${IMAGE}" | grep "${TAG}" | awk '{print $3}'
 
 if [ -z "${CONTAINER}" ]; then
 	git clone "https://github.com/Rubusch/docker__${IMAGE}.git" "${IMAGE}"
-	build "./${IMAGE}"
+	build "./${IMAGE}" "${DRYRUN}"
 fi
 
 ## docker container
-build ./docker__yocto
+build ./docker__yocto "${DRYRUN}"
 
 echo "READY."
 
