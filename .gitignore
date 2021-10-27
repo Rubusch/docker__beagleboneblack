@@ -5,3 +5,9 @@
 
 ## ignore output folder
 poky
+
+## docker basesystem
+sandbox
+
+## docker env
+.env

@@ -2,27 +2,11 @@
 
 MY_USER="$(whoami)"
 MY_HOME="/home/${MY_USER}"
-SSH_DIR="${MY_HOME}/.ssh"
-SSH_KNOWN_HOSTS="${SSH_DIR}/known_hosts"
 YOCTO_BRANCH="dunfell"
 YOCTO_DIR="${MY_HOME}/poky"
 BUILD_DIR="${YOCTO_DIR}/build"
 
-## permissions
-for item in "${YOCTO_DIR}" "${SSH_DIR}" "${MY_HOME}/meta-lothars-configs"; do
-    if [ ! "${MY_USER}" == "$( stat -c %U ${item} )" ]; then
-        ## may take some time
-        sudo chown "${MY_USER}:${MY_USER}" -R ${item}
-    fi
-done
-
-## ssh known_hosts
-touch ${SSH_KNOWN_HOSTS}
-for item in "github.com" "bitbucket.org"; do
-    if [ "" == "$( grep ${item} -r ${SSH_KNOWN_HOSTS} )" ]; then
-        ssh-keyscan "${item}" >> "${SSH_KNOWN_HOSTS}"
-    fi
-done
+00_devenv.sh "${YOCTO_DIR}" "${MY_HOME}/meta-lothars-configs"
 
 ## initial clone
 FIRST="$(ls -A "${YOCTO_DIR}")"

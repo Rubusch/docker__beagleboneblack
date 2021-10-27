@@ -1,55 +1,24 @@
-FROM ubuntu:20.04
-MAINTAINER Lothar Rubusch <lotophagon@protonmail.com>
-ENV DEBIAN_FRONTEND=noninteractive
-
-
 ################################################################################
 ## the USER is needed to make it available as --build-arg
-## in case docker complains for a not set USER, perhaps you forgot to use --build-arg USER="${USER}"
+## in case docker complains for a not set USER, perhaps you forgot to
+## use --build-arg USER=$USER
 ARG USER="${USER}"
+ARG UID="${UID}"
+ARG GID="${GID}"
+
+ARG DOCKER_BASE="sandbox"
+ARG DOCKER_BASE_TAG="20211027"
 
 
 ################################################################################
-## set up apt fully functional
-RUN apt-get update && apt-get upgrade -y && apt-get autoremove -y --purge
-RUN apt-get install -y  \
-        apt-utils
-
-RUN apt-get install -y  \
-        build-essential \
-        libncurses5-dev \
-        zlib1g-dev \
-        gawk \
-        wget \
-        git-core \
-        make \
-        gcc \
-        g++ \
-        bison \
-        flex \
-        binutils \
-        unzip \
-        python \
-        bzip2 \
-        libssl-dev \
-        locales \
-        bc \
-        cpio \
-        rsync \
-        cvs \
-        mercurial \
-        subversion \
-        vim \
-        screen \
-        minicom \
-        x11-apps \
-        sudo
+FROM ${USER}/${DOCKER_BASE}:${DOCKER_BASE_TAG} AS bbb_buildroot
+MAINTAINER Lothar Rubusch <l.rubusch@gmail.com>
+ENV DEBIAN_FRONTEND=noninteractive
 
 
 ################################################################################
 ## locale settings
 RUN locale-gen en_US.UTF-8
-
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
@@ -64,7 +33,7 @@ RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
 
 ################################################################################
 ## command mode
-USER root
-
-COPY build.sh /usr/local/bin/build.sh
+USER ${USER}
+WORKDIR /home/$USER
+COPY *.sh /usr/local/bin/
 CMD ["/bin/bash", "/usr/local/bin/build.sh"]

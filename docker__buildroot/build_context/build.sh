@@ -1,31 +1,13 @@
 #!/bin/sh -e
-
 MY_USER="$(whoami)"
 MY_HOME="/home/${MY_USER}"
-SSH_DIR="${MY_HOME}/.ssh"
-SSH_KNOWN_HOSTS="${SSH_DIR}/known_hosts"
 BR_DIR="${MY_HOME}/buildroot"
-
 export DEFCONFIG="beaglebone_defconfig"
 export BRANCH="2020.11.x"
 
-## permissions
-for item in "${BR_DIR}" "${SSH_DIR}"; do
-    if [ ! "${MY_USER}" == "$( stat -c %U ${item} )" ]; then
-        ## may take some time
-        sudo chown "${MY_USER}:${MY_USER}" -R ${item}
-    fi
-done
+00_devenv.sh "${BR_DIR}"
 
-## ssh known_hosts
-touch ${SSH_KNOWN_HOSTS}
-for item in "github.com" "bitbucket.org"; do
-    if [ "" == "$( grep ${item} -r ${SSH_KNOWN_HOSTS} )" ]; then
-        ssh-keyscan "${item}" >> "${SSH_KNOWN_HOSTS}"
-    fi
-done
-
-## initial clone
+## sources
 FIRST="$(ls -A "${BR_DIR}")"
 if [ -z "${FIRST}" ]; then
     cd "${BR_DIR}"
