@@ -22,16 +22,11 @@ Make sure, ``~/.local`` is within ``$PATH`` or re-link e.g. it to ``/usr/local``
 
 ## Buildroot
 
-(debug: experimental setup on alpine linux commented out)   
-
-
 ### Build
 
 ```
-$ cd ./docker__buildroot
-$ docker-compose up
+$ ./setup-buildroot.sh
 ```
-
 
 ### Usage
 
@@ -46,11 +41,8 @@ docker $> build.sh
 
 ### Build
 
-
 ```
-$ cd ./docker__yocto
-$ docker-compose up
-docker $> build.sh
+$ ./setup-yocto.sh
 ```
 
 
