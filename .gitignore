@@ -5,6 +5,7 @@
 
 ## ignore output folder
 poky
+buildroot
 
 ## docker basesystem
 sandbox

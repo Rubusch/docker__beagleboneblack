@@ -17,21 +17,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 ################################################################################
-## locale settings
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-
-
-################################################################################
-## setup user and run stuff under user
-RUN useradd "$USER" -m --password "$USER"
-RUN usermod -a -G sudo "$USER"
-RUN sed -i '/%sudo/s/.*/%sudo   ALL=NOPASSWD: ALL/' /etc/sudoers
-
-
-################################################################################
 ## command mode
 USER ${USER}
 WORKDIR /home/$USER
