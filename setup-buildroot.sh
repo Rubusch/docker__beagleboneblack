@@ -18,7 +18,7 @@ DRYRUN="${1}"
 ## base image
 IMAGE="sandbox"
 
-TAG="$(grep "ENV DOCKER_BASE_TAG" -r ./docker/build_context/Dockerfile | awk -F= '{ print $2 }')"
+TAG="$(grep "ENV DOCKER_BASE_TAG" -r ./docker__buildroot/build_context/Dockerfile | awk -F= '{ print $2 }')"
 TAG="${TAG//\"}"
 
 CONTAINER="$(docker images | grep "/${IMAGE}" | grep "${TAG}" | awk '{print $3}')"
