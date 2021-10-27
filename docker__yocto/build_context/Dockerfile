@@ -11,7 +11,7 @@ ARG DOCKER_BASE_TAG="20211027"
 
 
 ################################################################################
-FROM ${USER}/${DOCKER_BASE}:${DOCKER_BASE_TAG} AS sifive-unmatched
+FROM ${USER}/${DOCKER_BASE}:${DOCKER_BASE_TAG} AS bbb_yocto
 MAINTAINER Lothar Rubusch <l.rubusch@gmail.com>
 ENV DEBIAN_FRONTEND=noninteractive
 
