@@ -8,8 +8,8 @@ jobs:
          - run: pip3 install docker-compose
 
         ## buildroot
-          - checkout
-          - run: ./setup-buildroot.sh ci
+         - checkout
+         - run: ./setup-buildroot.sh ci
 
     build_yocto:
         machine: true
@@ -19,8 +19,8 @@ jobs:
          - run: pip3 install docker-compose
 
         ## yocto (just fetch, due to timeout in ci infrastructure)
-          - checkout
-          - run: ./setup-yocto.sh ci
+         - checkout
+         - run: ./setup-yocto.sh ci
 
 ## parallelization
 workflows:
