@@ -25,7 +25,7 @@ Make sure, ``~/.local`` is within ``$PATH`` or re-link e.g. it to ``/usr/local``
 ### Build
 
 ```
-$ ./setup-buildroot.sh
+$ DOCKERDIR=docker__buildroot ./setup.sh
 ```
 
 ### Usage
@@ -42,7 +42,7 @@ docker $> build.sh
 ### Build
 
 ```
-$ ./setup-yocto.sh
+$ DOCKERDIR=docker__yocto ./setup.sh
 ```
 
 

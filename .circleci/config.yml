@@ -9,7 +9,7 @@ jobs:
 
         ## buildroot
          - checkout
-         - run: ./setup-buildroot.sh ci
+         - run: DOCKERDIR=docker__buildroot ./setup.sh ci
 
     build_yocto:
         machine: true
@@ -20,7 +20,7 @@ jobs:
 
         ## yocto (just fetch, due to timeout in ci infrastructure)
          - checkout
-         - run: ./setup-yocto.sh ci
+         - run: DOCKERDIR=docker__yocto ./setup.sh ci
 
 ## parallelization
 workflows:
