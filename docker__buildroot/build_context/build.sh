@@ -3,7 +3,8 @@ MY_USER="$(whoami)"
 MY_HOME="/home/${MY_USER}"
 BR_DIR="${MY_HOME}/buildroot"
 export DEFCONFIG="beaglebone_defconfig"
-export BRANCH="2020.11.x"
+#export BRANCH="2020.11.x"
+export BRANCH="2021.08.x"
 
 00_devenv.sh "${BR_DIR}"
 
