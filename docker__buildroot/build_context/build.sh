@@ -19,7 +19,7 @@ if [ -z "${FIRST}" ]; then
 fi
 
 cd "${BR_DIR}"
-make defconfig "${DEFCONFIG}" || exit 1
+make "${DEFCONFIG}" || exit 1
 make -j"$(nproc)" || exit 1
 
 echo "READY."
